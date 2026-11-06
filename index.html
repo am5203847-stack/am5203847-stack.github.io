@@ -1,114 +1,101 @@
-<!DOCTYPE html>
-<html dir="rtl" lang="ar">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ADEL V12 - Original Look Fixed</title>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ADEL V9.2 PDF FIXED</title>
 <style>
-body{background:#000;color:#fff;font-family:Arial;margin:0;padding:10px}
-.header{border:3px solid #00ff88;border-radius:25px;padding:15px;margin-bottom:15px;text-align:center}
-.title{color:#00ff88;font-size:24px;font-weight:bold}
-.sub{color:#ffd700;margin:5px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
-.gbtn{border:2px solid gold;border-radius:15px;padding:12px;background:#111;color:#fff;text-align:center;font-size:14px}
-.gbtn.active{background:gold;color:#000;font-weight:bold}
-.gbtn-yellow{background:gold;color:#000;font-weight:bold;grid-column:span 2;padding:15px;font-size:18px;cursor:pointer}
-.item{background:linear-gradient(135deg,#0a1f0a,#112211);border-right:5px solid #00ff88;border-radius:12px;padding:12px;margin:10px 0;position:relative}
-.item-head{display:flex;justify-content:space-between;align-items:center}
-.item-title{color:#fff;font-weight:bold;font-size:15px}
-.item-desc{color:#aaa;font-size:13px;margin-top:6px;line-height:1.4}
-.icons{font-size:22px}
-#video{width:100%;border:2px solid gold;border-radius:15px;display:none;margin:10px 0}
-#photos{display:flex;flex-wrap:wrap;gap:6px}
-#photos img{width:90px;border:2px solid gold;border-radius:8px}
-input{background:#1a1a1a;color:gold;border:1.5px solid gold;border-radius:10px;padding:10px;width:92%;margin:5px;font-size:14px}
-</style>
-</head>
+body{background:#000;color:#fff;font-family:Arial;margin:0;padding:8px}
+.top{border:3px solid #00ff88;border-radius:22px;padding:15px;margin-bottom:12px;text-align:center}
+.h1{color:#00ff88;font-size:26px;font-weight:900;letter-spacing:1px}
+.sub{color:#ffd700;font-size:18px;margin:10px}
+.row{display:flex;gap:0;margin:6px 0}
+.inp{flex:1;background:#1a1a1a;color:#aaa;border:1.5px solid #665500;border-radius:12px;padding:14px;font-size:15px;width:50%}
+.btnSave{background:#ffcc00;color:#000;font-weight:900;border-radius:14px;padding:14px;width:100%;border:none;font-size:17px;margin:8px 0;cursor:pointer}
+.tabs{border:2px solid #665500;border-radius:18px;padding:10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.tbtn{border:1.5px solid #665500;border-radius:12px;padding:12px;background:#111;color:#ffcc00;text-align:center;font-weight:700;font-size:14px;cursor:pointer}
+.tbtn.active{background:#ffcc00;color:#000}
+.list{border:2px solid #665500;border-radius:18px;padding:12px}
+.listTitle{color:#ffcc00;text-align:center;font-size:20px;font-weight:900;margin:10px 0}
+.item{background:linear-gradient(90deg,#0a2010,#0a1a0a);border-right:4px solid #00ff88;border-left:1px solid #222;border-top:1px solid #222;border-bottom:1px solid #222;border-radius:12px;padding:12px;margin:8px 0;display:flex;justify-content:space-between;align-items:center}
+.icons{display:flex;gap:6px;align-items:center}
+.cam{background:#111;border:2px solid #ffcc00;border-radius:10px;padding:6px 8px;font-size:18px;cursor:pointer}
+.check{background:#2a7fff;border-radius:6px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px}
+#photos{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+#photos img{width:85px;border:2px solid gold;border-radius:8px}
+input[type=file]{display:none}
+</style></head>
 <body>
-
-<div class="header">
-<div class="title">ADEL V10 - تعليمات السلامة</div>
-<div class="sub">PPE 16 بند كامل - الفرعون - سوهاج</div>
-<div style="margin-top:10px">
-<input id="c1" placeholder="SBG Rakaez A-4 - Company">
-<input id="c2" placeholder="Zone 1">
-<input id="c3" placeholder="m2 100 - Area">
-<input id="c4" placeholder="PPE Type">
-</div>
-<div class="grid">
-<div class="gbtn" onclick="setPPE('PPE')">PPE</div>
-<div class="gbtn" onclick="setPPE('SBG Rakaez A-4')">SBG Rakaez A-4</div>
-<div class="gbtn" onclick="setPPE('m2 100')">m2 100</div>
-<div class="gbtn" onclick="setPPE('Zone 1')">Zone 1</div>
-<div class="gbtn-yellow gbtn" onclick="window.print()">🖨️ حفظ PDF / طباعة</div>
-</div>
-<div class="sub">PPE: 16/16 - 100% - PTW 21 / Scaffold 30</div>
+<div class="top">
+<div class="h1">ADEL V9.2 PDF FIXED</div>
+<div class="sub">SBG | Rakaez A-4</div>
+<div class="row"><input class="inp" id="proj" placeholder="Project"><input class="inp" id="comp" placeholder="Company Name" value="SBG Rakaez A-4"></div>
+<div class="row"><input class="inp" id="zone" placeholder="Zone" value="Zone 1"><input class="inp" id="area" placeholder="Area m2" value="Area m2 - 100"></div>
+<button class="btnSave" onclick="saveCompany()">SAVE Company</button>
+<div class="sub" id="perc">SCAFFOLD: 30/30 - 100%</div>
 </div>
 
-<div class="grid">
-<div class="gbtn" onclick="alert('Scaffold 30 - سيتم إضافته')">Scaffold 30</div>
-<div class="gbtn" onclick="alert('Crane 25')">Crane 25</div>
-<div class="gbtn" onclick="alert('PTW 21')">PTW 21</div>
-<div class="gbtn active">PPE 16</div>
-<div class="gbtn" onclick="alert('Forklift 29')">Forklift 29</div>
-<div class="gbtn" onclick="alert('Electrical 20')">Electrical 20</div>
+<div class="tabs">
+<div class="tbtn active" onclick="switchTab('scaffold',this)">Scaffold 30</div>
+<div class="tbtn" onclick="switchTab('crane',this)">Crane 25</div>
+<div class="tbtn" onclick="switchTab('forklift',this)">Forklift 29</div>
+<div class="tbtn" onclick="switchTab('ppe',this)">PPE 16</div>
+<div class="tbtn" onclick="switchTab('ptw',this)">PTW 21</div>
+<div class="tbtn" onclick="switchTab('electrical',this)">Electrical 20</div>
 </div>
 
-<video id="video" autoplay playsinline></video>
-<canvas id="canvas" style="display:none"></canvas>
 <div id="photos"></div>
 
-<div id="list"></div>
+<div class="list">
+<div class="listTitle" id="listTitle">Scaffold Inspection 30 Items</div>
+<div id="listItems"></div>
+</div>
 
 <script>
-let data=[
-["Helmet - خوذة -1","صلاحية 3 سنين، افحص الشرخ والرباط، لا تستخدم المكسورة، اربط الحزام"],
-["Glasses - نظارة -2","مضادة للخدش، تحمي من الشرر والغبار، نظفها يوميا"],
-["Harness - حزام أمان -3","افحص الخياطة والهوك، اختبار تحميل، لا تستخدم ممزق"],
-["Gloves - جوانتي -4","يحمي من الجروح والكيماويات والكهرباء، مقاس مناسب"],
-["Shoes - حذاء سيفتي -5","نعل فولاذي مضاد للانزلاق، مقاوم للزيت والكهرباء"],
-["Vest - فيست فسفوري -6","عاكس للضوء ليلا ونهارا، مقاس مناسب فوق الملابس"],
-["Ear Plug - سدادات أذن -7","تقلل الضوضاء فوق 85 ديسيبل، نظفها أو استبدلها"],
-["Mask - كمامة -8","فلتر P2 للغبار، استبدلها عند الاتساخ أو صعوبة التنفس"],
-["Face Shield - واقي وجه -9","يحمي الوجه من الشرر والمواد المتطايرة، نظف بعد كل استخدام"],
-["Knee Pad - واقي ركبة -10","للعمل على الركب، يقلل الضغط والإصابات"],
-["Welding Helmet - خوذة لحام -11","فلتر أوتوماتيك، يحمي من الأشعة فوق البنفسجية"],
-["Safety Rope - حبل أمان -12","حبل نايلون 12مم، اختبر التحمل، لا تستخدم مقطوع"],
-["Lanyard - حبل ربط -13","يمتص الصدمات، طول مناسب، افحص الهوك"],
-["Anchor - نقطة تثبيت -14","تتحمل 2270 كجم، ثبتها في خرسانة أو حديد ثابت"],
-["Coverall - أفرول -15","مقاوم للحريق والكيماويات، مقاس مناسب، أكمام طويلة"],
-["First Aid - إسعافات -16","شنطة إسعافات قريبة، اعرف مكانها، بلغ عن أي نقص"]
-];
+const db={
+scaffold:["Green Tag Valid -1","Engineer Design -2","Level Ground -3","Base Plates -4","Sole Boards -5","Bracing -6","Ledger -7","Transom -8","Guardrail -9","Toe Board -10","Access Ladder -11","Platform Planks -12","Ties -13","Couplers -14","Inspection Tag -15","Load Capacity -16","No Damage -17","Verticality -18","Stability -19","Decking -20","Edge Protection -21","Mid Rail -22","Top Rail -23","Ladder Access -24","Scaffold Width -25","No Overload -26","Housekeeping -27","PPE -28","Permit -29","Final Approval -30"],
+crane:["Crane Certificate -1","Operator License -2","Load Chart -3","Outriggers -4","Ground Level -5","Wind Speed -6","Radius -7","Boom Angle -8","Hook Safety -9","Wire Rope -10","Limit Switch -11","Anti Two Block -12","Fire Extinguisher -13","First Aid -14","Barrication -15","Signal Man -16","Communication -17","Lift Plan -18","Weight Check -19","Sling Check -20","Shackle -21","Tag Line -22","No People Under -23","Power Lines -24","Night Light -25"],
+forklift:["License -1","Seat Belt -2","Horn -3","Lights -4","Brakes -5","Tires -6","Forks -7","Chain -8","Hydraulic -9","Fuel -10","Battery -11","No Leak -12","Fire Ext -13","Mirror -14","Capacity Plate -15","Load Center -16","Slope -17","Speed Limit -18","No Passenger -19","Ground Check -20","Barrication -21","PPE -22","Inspection -23","Parking -24","Chocks -25","Mast -26","Overhead Guard -27","Back Alarm -28","Steering -29"],
+ppe:["Helmet -1","Glasses -2","Harness -3","Gloves -4","Shoes -5","Vest -6","Ear Plug -7","Mask -8","Face Shield -9","Knee Pad -10","Welding Helmet -11","Rope -12","Lanyard -13","Anchor -14","Coverall -15","First Aid -16"],
+ptw:["PTW Valid -1","JSA -2","Risk Assessment -3","Gas Test -4","Isolation -5","LOTO -6","Fire Watch -7","Scaffold Tag -8","Crane PTW -9","Excavation -10","Confined Space -11","Electrical -12","Height Work -13","Hot Work -14","Lifting -15","Radiography -16","Chemical -17","Barrication -18","Signage -19","PPE -20","Rescue Plan -21"],
+electrical:["Lockout Tagout -1","Insulation -2","Grounding -3","GFCI -4","Cable Condition -5","No Overload -6","Panel Cover -7","Warning Sign -8","PPE -9","Test Before -10","Dry Area -11","No Water -12","Qualified Person -13","Permit -14","Fire Ext -15","First Aid -16","Tool Insulated -17","No Damage -18","Voltage Check -19","Final Check -20"]
+};
+
+let current='scaffold';
 
 function render(){
+ let list=db[current];
  let h="";
- data.forEach((d,i)=>{
-  h+=`<div class="item">
-   <div class="item-head">
-    <div class="item-title">${d[0]}</div>
-    <div class="icons"><span>✔️</span> <button onclick="openCam(${i})" style="background:#111;border:2px solid gold;border-radius:8px;font-size:20px;cursor:pointer">📸</button></div>
-   </div>
-   <div class="item-desc">${d[1]}</div>
-  </div>`;
+ list.forEach((name,i)=>{
+  h+=`<div class="item"><div class="icons"><label class="cam" for="cam${i}">📸</label><input type="file" accept="image/*" capture="environment" id="cam${i}" onchange="addPhoto(this)"><div class="check">✔️</div></div><div style="font-size:15px">${name}</div></div>`;
  });
- document.getElementById('list').innerHTML=h;
+ document.getElementById('listItems').innerHTML=h;
+ document.getElementById('listTitle').innerText=current.charAt(0).toUpperCase()+current.slice(1)+" Inspection "+list.length+" Items";
+ document.getElementById('perc').innerText=current.toUpperCase()+": "+list.length+"/"+list.length+" - 100%";
 }
-function setPPE(v){document.getElementById('c4').value=v; alert('تم اختيار: '+v);}
 
-async function openCam(i){
- let v=document.getElementById('video'); v.style.display='block'; v.scrollIntoView({behavior:'smooth'});
- try{
-  let s=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});
-  v.srcObject=s;
-  setTimeout(()=>{
-   let c=document.getElementById('canvas'); c.width=v.videoWidth; c.height=v.videoHeight;
-   c.getContext('2d').drawImage(v,0,0);
-   let img=document.createElement('img'); img.src=c.toDataURL('image/jpeg');
-   document.getElementById('photos').appendChild(img);
-   v.srcObject.getTracks().forEach(t=>t.stop()); v.style.display='none';
-   alert('✅ تم تصوير '+data[i][0]+' - الفرعون سوهاج');
-  },2000);
- }catch(e){ alert('لازم تفتح الموقع بـ HTTPS وتسمح للكاميرا - '+e.message); v.style.display='none';}
+function switchTab(tab,el){
+ current=tab;
+ document.querySelectorAll('.tbtn').forEach(b=>b.classList.remove('active'));
+ el.classList.add('active');
+ render();
 }
+
+function addPhoto(input){
+ if(input.files && input.files[0]){
+  let r=new FileReader();
+  r.onload=e=>{
+   let img=document.createElement('img');img.src=e.target.result;
+   document.getElementById('photos').appendChild(img);
+  };
+  r.readAsDataURL(input.files[0]);
+ }
+}
+
+function saveCompany(){
+ let c=document.getElementById('comp').value||'SBG Rakaez A-4';
+ localStorage.setItem('company',c);
+ alert('✅ تم حفظ الشركة: '+c+' - الفرعون');
+ if(window.print){ window.print(); }
+}
+
 render();
 </script>
+<!-- ADEL V9.2 PDF FIXED - SBG Rakaez A-4 - Sohag Pharaoh 937637c -->
 </body></html>
