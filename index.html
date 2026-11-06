@@ -1,32 +1,114 @@
-<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width">
-<title>ADEL V11 Camera FIXED</title>
-<style>body{background:#000;color:#fff;font-family:Arial;padding:10px}.box{border:2px solid #0f0;border-radius:20px;padding:15px;margin:10px}.btn{border:2px solid gold;border-radius:12px;padding:12px;margin:5px;background:#111;color:#fff;width:45%;display:inline-block;text-align:center}.btn-yellow{background:gold;color:#000;font-weight:bold;width:95%;font-size:18px;cursor:pointer;padding:15px;border-radius:10px}.item{background:#0a1f0a;border-right:4px solid #0f0;padding:12px;margin:8px;border-radius:10px;display:flex;justify-content:space-between;align-items:center}input{background:#222;color:gold;border:1px solid gold;padding:12px;border-radius:8px;width:92%;margin:6px}#video{width:100%;border-radius:15px;border:2px solid gold;display:none}</style></head>
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ADEL V12 - Original Look Fixed</title>
+<style>
+body{background:#000;color:#fff;font-family:Arial;margin:0;padding:10px}
+.header{border:3px solid #00ff88;border-radius:25px;padding:15px;margin-bottom:15px;text-align:center}
+.title{color:#00ff88;font-size:24px;font-weight:bold}
+.sub{color:#ffd700;margin:5px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.gbtn{border:2px solid gold;border-radius:15px;padding:12px;background:#111;color:#fff;text-align:center;font-size:14px}
+.gbtn.active{background:gold;color:#000;font-weight:bold}
+.gbtn-yellow{background:gold;color:#000;font-weight:bold;grid-column:span 2;padding:15px;font-size:18px;cursor:pointer}
+.item{background:linear-gradient(135deg,#0a1f0a,#112211);border-right:5px solid #00ff88;border-radius:12px;padding:12px;margin:10px 0;position:relative}
+.item-head{display:flex;justify-content:space-between;align-items:center}
+.item-title{color:#fff;font-weight:bold;font-size:15px}
+.item-desc{color:#aaa;font-size:13px;margin-top:6px;line-height:1.4}
+.icons{font-size:22px}
+#video{width:100%;border:2px solid gold;border-radius:15px;display:none;margin:10px 0}
+#photos{display:flex;flex-wrap:wrap;gap:6px}
+#photos img{width:90px;border:2px solid gold;border-radius:8px}
+input{background:#1a1a1a;color:gold;border:1.5px solid gold;border-radius:10px;padding:10px;width:92%;margin:5px;font-size:14px}
+</style>
+</head>
 <body>
-<div class="box">
-<h2 style="color:#0f0;text-align:center">ADEL V11 - تعليمات - FIXED</h2>
-<p style="color:gold;text-align:center">PPE 16 بند - الفرعون - سوهاج</p>
-<input id="company" placeholder="SBG Rakaez A-4">
-<input id="zone" placeholder="Zone 1"><input id="area" placeholder="Area m2 - 100">
-<button class="btn-yellow" onclick="window.print()">🖨️ حفظ PDF / طباعة</button>
-<p style="color:gold;text-align:center">PPE: 16/16 - 100%</p>
+
+<div class="header">
+<div class="title">ADEL V10 - تعليمات السلامة</div>
+<div class="sub">PPE 16 بند كامل - الفرعون - سوهاج</div>
+<div style="margin-top:10px">
+<input id="c1" placeholder="SBG Rakaez A-4 - Company">
+<input id="c2" placeholder="Zone 1">
+<input id="c3" placeholder="m2 100 - Area">
+<input id="c4" placeholder="PPE Type">
 </div>
-<div style="text-align:center">
-<button class="btn" onclick="alert('Scaffold 30 - قريبا')">Scaffold 30</button>
-<button class="btn" onclick="alert('Crane 25 - قريبا')">Crane 25</button>
-<button class="btn" onclick="alert('PTW 21 - قريبا')">PTW 21</button>
-<button class="btn" style="background:gold;color:#000" onclick="alert('PPE 16 شغال')">PPE 16</button>
+<div class="grid">
+<div class="gbtn" onclick="setPPE('PPE')">PPE</div>
+<div class="gbtn" onclick="setPPE('SBG Rakaez A-4')">SBG Rakaez A-4</div>
+<div class="gbtn" onclick="setPPE('m2 100')">m2 100</div>
+<div class="gbtn" onclick="setPPE('Zone 1')">Zone 1</div>
+<div class="gbtn-yellow gbtn" onclick="window.print()">🖨️ حفظ PDF / طباعة</div>
 </div>
+<div class="sub">PPE: 16/16 - 100% - PTW 21 / Scaffold 30</div>
+</div>
+
+<div class="grid">
+<div class="gbtn" onclick="alert('Scaffold 30 - سيتم إضافته')">Scaffold 30</div>
+<div class="gbtn" onclick="alert('Crane 25')">Crane 25</div>
+<div class="gbtn" onclick="alert('PTW 21')">PTW 21</div>
+<div class="gbtn active">PPE 16</div>
+<div class="gbtn" onclick="alert('Forklift 29')">Forklift 29</div>
+<div class="gbtn" onclick="alert('Electrical 20')">Electrical 20</div>
+</div>
+
 <video id="video" autoplay playsinline></video>
 <canvas id="canvas" style="display:none"></canvas>
-<div id="photos" style="display:flex;flex-wrap:wrap;gap:5px;margin:10px"></div>
+<div id="photos"></div>
+
 <div id="list"></div>
+
 <script>
-let items=["Helmet - خوذة - افحص الشرخ، اربط الحزام - لا تستخدم مكسورة","Glasses - نظارة - تحمي من الشرر","Harness - حزام - افحص الخياطة والهوك","Gloves - جوانتي - يحمي من الجروح","Shoes - سيفتي - نعل فولاذي","Vest - فيست فسفوري عاكس"];
-function render(){let h="";items.forEach((t,i)=>{h+=`<div class=item><span>${t}</span><div><span style='font-size:24px'>☑️</span><button onclick='openCam(${i})' style='font-size:22px;background:#111;border:2px solid gold;border-radius:8px;margin-right:5px'>📸</button></div></div>`});document.getElementById('list').innerHTML=h;}
+let data=[
+["Helmet - خوذة -1","صلاحية 3 سنين، افحص الشرخ والرباط، لا تستخدم المكسورة، اربط الحزام"],
+["Glasses - نظارة -2","مضادة للخدش، تحمي من الشرر والغبار، نظفها يوميا"],
+["Harness - حزام أمان -3","افحص الخياطة والهوك، اختبار تحميل، لا تستخدم ممزق"],
+["Gloves - جوانتي -4","يحمي من الجروح والكيماويات والكهرباء، مقاس مناسب"],
+["Shoes - حذاء سيفتي -5","نعل فولاذي مضاد للانزلاق، مقاوم للزيت والكهرباء"],
+["Vest - فيست فسفوري -6","عاكس للضوء ليلا ونهارا، مقاس مناسب فوق الملابس"],
+["Ear Plug - سدادات أذن -7","تقلل الضوضاء فوق 85 ديسيبل، نظفها أو استبدلها"],
+["Mask - كمامة -8","فلتر P2 للغبار، استبدلها عند الاتساخ أو صعوبة التنفس"],
+["Face Shield - واقي وجه -9","يحمي الوجه من الشرر والمواد المتطايرة، نظف بعد كل استخدام"],
+["Knee Pad - واقي ركبة -10","للعمل على الركب، يقلل الضغط والإصابات"],
+["Welding Helmet - خوذة لحام -11","فلتر أوتوماتيك، يحمي من الأشعة فوق البنفسجية"],
+["Safety Rope - حبل أمان -12","حبل نايلون 12مم، اختبر التحمل، لا تستخدم مقطوع"],
+["Lanyard - حبل ربط -13","يمتص الصدمات، طول مناسب، افحص الهوك"],
+["Anchor - نقطة تثبيت -14","تتحمل 2270 كجم، ثبتها في خرسانة أو حديد ثابت"],
+["Coverall - أفرول -15","مقاوم للحريق والكيماويات، مقاس مناسب، أكمام طويلة"],
+["First Aid - إسعافات -16","شنطة إسعافات قريبة، اعرف مكانها، بلغ عن أي نقص"]
+];
+
+function render(){
+ let h="";
+ data.forEach((d,i)=>{
+  h+=`<div class="item">
+   <div class="item-head">
+    <div class="item-title">${d[0]}</div>
+    <div class="icons"><span>✔️</span> <button onclick="openCam(${i})" style="background:#111;border:2px solid gold;border-radius:8px;font-size:20px;cursor:pointer">📸</button></div>
+   </div>
+   <div class="item-desc">${d[1]}</div>
+  </div>`;
+ });
+ document.getElementById('list').innerHTML=h;
+}
+function setPPE(v){document.getElementById('c4').value=v; alert('تم اختيار: '+v);}
+
 async function openCam(i){
- let v=document.getElementById('video'); v.style.display='block';
- try{let s=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}); v.srcObject=s;
- setTimeout(()=>{let c=document.getElementById('canvas'); c.width=v.videoWidth; c.height=v.videoHeight; c.getContext('2d').drawImage(v,0,0); let img=document.createElement('img'); img.src=c.toDataURL('image/jpeg'); img.style.width='100px'; img.style.border='2px solid gold'; img.style.borderRadius='8px'; document.getElementById('photos').appendChild(img); v.srcObject.getTracks().forEach(t=>t.stop()); v.style.display='none'; alert('تم التقاط صورة للبند '+(i+1)+' - الفرعون');},1500);}catch(e){alert('افتح الموقع بـ HTTPS واسمح للكاميرا: '+e);}
+ let v=document.getElementById('video'); v.style.display='block'; v.scrollIntoView({behavior:'smooth'});
+ try{
+  let s=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});
+  v.srcObject=s;
+  setTimeout(()=>{
+   let c=document.getElementById('canvas'); c.width=v.videoWidth; c.height=v.videoHeight;
+   c.getContext('2d').drawImage(v,0,0);
+   let img=document.createElement('img'); img.src=c.toDataURL('image/jpeg');
+   document.getElementById('photos').appendChild(img);
+   v.srcObject.getTracks().forEach(t=>t.stop()); v.style.display='none';
+   alert('✅ تم تصوير '+data[i][0]+' - الفرعون سوهاج');
+  },2000);
+ }catch(e){ alert('لازم تفتح الموقع بـ HTTPS وتسمح للكاميرا - '+e.message); v.style.display='none';}
 }
 render();
-</script></body></html>
+</script>
+</body></html>
