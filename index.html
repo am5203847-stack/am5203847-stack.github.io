@@ -1,62 +1,32 @@
-<!DOCTYPE html>
-<html dir="rtl" lang="ar">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width">
-<title>ADEL V11 - Fixed Buttons</title>
-<style>
-body{background:#000;color:#fff;font-family:Arial;padding:10px}
-.box{border:2px solid #00ff88;border-radius:20px;padding:15px;margin:10px}
-.btn{border:2px solid gold;border-radius:12px;padding:10px;margin:5px;background:#111;color:#fff;width:45%;display:inline-block;text-align:center}
-.btn-yellow{background:gold;color:#000;font-weight:bold;width:95%;font-size:18px;cursor:pointer}
-.active{background:gold;color:#000}
-.item{background:#0a1f0a;border-right:4px solid #00ff88;padding:10px;margin:8px;border-radius:10px;display:flex;justify-content:space-between}
-input{background:#222;color:gold;border:1px solid gold;padding:8px;border-radius:8px;width:90%;margin:5px}
-</style></head>
+<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width">
+<title>ADEL V11 Camera FIXED</title>
+<style>body{background:#000;color:#fff;font-family:Arial;padding:10px}.box{border:2px solid #0f0;border-radius:20px;padding:15px;margin:10px}.btn{border:2px solid gold;border-radius:12px;padding:12px;margin:5px;background:#111;color:#fff;width:45%;display:inline-block;text-align:center}.btn-yellow{background:gold;color:#000;font-weight:bold;width:95%;font-size:18px;cursor:pointer;padding:15px;border-radius:10px}.item{background:#0a1f0a;border-right:4px solid #0f0;padding:12px;margin:8px;border-radius:10px;display:flex;justify-content:space-between;align-items:center}input{background:#222;color:gold;border:1px solid gold;padding:12px;border-radius:8px;width:92%;margin:6px}#video{width:100%;border-radius:15px;border:2px solid gold;display:none}</style></head>
 <body>
 <div class="box">
-<h2 style="color:#00ff88;text-align:center">ADEL V11 - تعليمات السلامة - FIXED</h2>
-<p style="color:gold;text-align:center">PPE 16 بند كامل - الفرعون - سوهاج</p>
-
-<input id="company" placeholder="Company Name - SBG Rakaez A-4">
-<input id="zone" placeholder="Zone 1">
-<input id="area" placeholder="Area m2 - 100">
-<input id="ppe" placeholder="PPE Type">
-
-<button class="btn-yellow" onclick="savePDF()">حفظ PDF / طباعة 🖨️</button>
-<p id="percent" style="color:gold;text-align:center">PPE: 16/16 - 100%</p>
+<h2 style="color:#0f0;text-align:center">ADEL V11 - تعليمات - FIXED</h2>
+<p style="color:gold;text-align:center">PPE 16 بند - الفرعون - سوهاج</p>
+<input id="company" placeholder="SBG Rakaez A-4">
+<input id="zone" placeholder="Zone 1"><input id="area" placeholder="Area m2 - 100">
+<button class="btn-yellow" onclick="window.print()">🖨️ حفظ PDF / طباعة</button>
+<p style="color:gold;text-align:center">PPE: 16/16 - 100%</p>
 </div>
-
 <div style="text-align:center">
-<button class="btn" onclick="showTab('scaffold')">Scaffold 30</button>
-<button class="btn" onclick="showTab('crane')">Crane 25</button>
-<button class="btn active" onclick="showTab('ppe')">PPE 16</button>
-<button class="btn" onclick="showTab('ptw')">PTW 21</button>
+<button class="btn" onclick="alert('Scaffold 30 - قريبا')">Scaffold 30</button>
+<button class="btn" onclick="alert('Crane 25 - قريبا')">Crane 25</button>
+<button class="btn" onclick="alert('PTW 21 - قريبا')">PTW 21</button>
+<button class="btn" style="background:gold;color:#000" onclick="alert('PPE 16 شغال')">PPE 16</button>
 </div>
-
+<video id="video" autoplay playsinline></video>
+<canvas id="canvas" style="display:none"></canvas>
+<div id="photos" style="display:flex;flex-wrap:wrap;gap:5px;margin:10px"></div>
 <div id="list"></div>
-
 <script>
-let items=[
-"Helmet - خوذة - افحص الشرخ، اربط الحزام - لا تستخدم مكسورة",
-"Glasses - نظارة - تحمي من الشرر والغبار",
-"Harness - حزام - افحص الخياطة والهوك - لا تستخدم ممزق",
-"Gloves - جوانتي - يحمي من الجروح والكيماويات",
-"Shoes - سيفتي - نعل فولاذي مضاد للانزلاق",
-"Vest - فيست فسفوري - عاكس للضوء ليلا"
-];
-function render(){
- let h="";
- items.forEach(t=>{
-  h+=`<div class="item"><span>${t}</span><span>☑️ 📸</span></div>`;
- });
- document.getElementById('list').innerHTML=h;
+let items=["Helmet - خوذة - افحص الشرخ، اربط الحزام - لا تستخدم مكسورة","Glasses - نظارة - تحمي من الشرر","Harness - حزام - افحص الخياطة والهوك","Gloves - جوانتي - يحمي من الجروح","Shoes - سيفتي - نعل فولاذي","Vest - فيست فسفوري عاكس"];
+function render(){let h="";items.forEach((t,i)=>{h+=`<div class=item><span>${t}</span><div><span style='font-size:24px'>☑️</span><button onclick='openCam(${i})' style='font-size:22px;background:#111;border:2px solid gold;border-radius:8px;margin-right:5px'>📸</button></div></div>`});document.getElementById('list').innerHTML=h;}
+async function openCam(i){
+ let v=document.getElementById('video'); v.style.display='block';
+ try{let s=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}); v.srcObject=s;
+ setTimeout(()=>{let c=document.getElementById('canvas'); c.width=v.videoWidth; c.height=v.videoHeight; c.getContext('2d').drawImage(v,0,0); let img=document.createElement('img'); img.src=c.toDataURL('image/jpeg'); img.style.width='100px'; img.style.border='2px solid gold'; img.style.borderRadius='8px'; document.getElementById('photos').appendChild(img); v.srcObject.getTracks().forEach(t=>t.stop()); v.style.display='none'; alert('تم التقاط صورة للبند '+(i+1)+' - الفرعون');},1500);}catch(e){alert('افتح الموقع بـ HTTPS واسمح للكاميرا: '+e);}
 }
-function savePDF(){ 
-  let c=document.getElementById('company').value || 'SBG Rakaez A-4';
-  document.title=c;
-  window.print(); 
-}
-function showTab(t){ alert('فتح: '+t+' - سيتم إضافة 30 بند قريبا - الفرعون'); }
 render();
-</script>
-<!-- SOHAG PHARAOH V11 - 937637c - Encrypted Next -->
-</body></html>
+</script></body></html>
