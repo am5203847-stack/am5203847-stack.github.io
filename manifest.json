@@ -1,0 +1,11 @@
+{
+  "name": "Adel Mahmoud - SBG HSE Rakaez A-4",
+  "short_name": "Adel HSE",
+  "description": "Developed & Owned by Adel Mahmoud - First HSE Mobile System Egypt - Rakaez A-4 415.8m2",
+  "start_url": "./?owner=AdelMahmoud",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#d4af37",
+  "orientation": "portrait",
+  "icons": [{"src": "https://cdn-icons-png.flaticon.com/512/3774/3774083.png","sizes": "512x512","type": "image/png"}]
+}
