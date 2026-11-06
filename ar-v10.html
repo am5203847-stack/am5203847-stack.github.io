@@ -1,61 +1,18 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ADEL V10 - تعليمات السلامة PPE 16</title>
-<style>
-body{background:#000;color:#fff;font-family:sans-serif;margin:0;padding:10px}
-.card{border:2px solid #00ff66;border-radius:20px;padding:15px;background:#111;margin-bottom:15px}
-h1{color:#00ff66;text-align:center;margin:5px;font-size:22px}
-.sub{color:#ffcc00;text-align:center;margin-bottom:15px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.inp{background:#000;border:1px solid #ffcc00;color:#fff;padding:10px;border-radius:10px;text-align:center}
-.btn-save{background:#ffcc00;color:#000;padding:12px;border-radius:12px;text-align:center;font-weight:bold;margin-top:10px;cursor:pointer}
-.tabs{border:1px solid #ffcc00;border-radius:15px;padding:8px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
-.tab{background:#000;border:1px solid #ffcc00;color:#ffcc00;padding:8px 14px;border-radius:10px;font-weight:bold}
-.tab.active{background:#ffcc00;color:#000}
-.item{background:#0a1a0a;border-right:4px solid #00ff66;border-left:4px solid #00ff66;border-radius:12px;padding:10px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
-.item b{font-size:16px}
-.item small{display:block;color:#aaa;font-size:12px;margin-top:4px}
-.check{width:26px;height:26px}
-</style>
-</head>
-<body>
-<div class="card">
-<h1>ADEL V10 - تعليمات السلامة</h1>
-<div class="sub">PPE 16 بند - SBG | Rakaez A-4</div>
-<div class="grid">
-<input class="inp" placeholder="Project">
-<input class="inp" placeholder="Company Name">
-<input class="inp" placeholder="Zone">
-<input class="inp" placeholder="Area m2">
-</div>
-<div class="btn-save" onclick="window.print()">حفظ PDF / Print</div>
-</div>
-
-<div class="tabs">
-<div class="tab">Scaffold 30</div><div class="tab">Crane 25</div><div class="tab">Forklift 29</div>
-<div class="tab active">PPE 16</div><div class="tab">PTW 21</div><div class="tab">Electrical 20</div>
-</div>
-
-<div style="margin-top:15px">
-<div class="item"><div><b>1- خوذة - Safety Helmet</b><small>افحص الخوذة، صلاحية 3 سنوات، اربط الحزام - لا تستخدم خوذة مكسورة</small></div><input type="checkbox" class="check" checked></div>
-<div class="item"><div><b>2- نظارة - Safety Glasses</b><small>نظيفة، مناسبة للوجه، ضد الضباب - احمي عينيك من الشرر والغبار</small></div><input type="checkbox" class="check" checked></div>
-<div class="item"><div><b>3- حزام أمان - Full Harness</b><small>افحص القطع، تاريخ الصلاحية 5 سنوات - لا تستخدم حزام ممزق</small></div><input type="checkbox" class="check" checked></div>
-<div class="item"><div><b>4- جوانتي - Safety Gloves</b><small>مقاس مناسب، جاف، بدون قطع - احمي يديك من الجروح والكيماويات</small></div><input type="checkbox" class="check" checked></div>
-<div class="item"><div><b>5- سيفتي شوز - Safety Shoes</b><small>مقدمة حديد، نعل ضد الانزلاق، مربوط جيدا - يمنع اصابات القدم</small></div><input type="checkbox" class="check" checked></div>
-<div class="item"><div><b>6- سترة عاكسة - High Vis Vest</b><small>نظيفة، عاكس سليم، مقاس مناسب - لازم تبان في الليل والمعدات</small></div><input type="checkbox" class="check" checked></div>
-<div class="item"><div><b>7- واقي وجه - Face Shield</b><small>للصاروخ واللحام والقطع - يحمي الوجه كامل من الشرر</small></div><input type="checkbox" class="check" checked></div>
-<div class="item"><div><b>8- سدادات أذن - Ear Protection</b><small>في المناطق أكثر من 85 ديسيبل - يمنع ضعف السمع</small></div><input type="checkbox" class="check" checked></div>
-<div class="item"><div><b>9- كمامة - Dust Mask</b><small>مقاس محكم، فلتر نظيف، غير منتهي - يمنع استنشاق الغبار</small></div><input type="checkbox" class="check" checked></div>
-<div class="item"><div><b>10- خوذة لحام - Welding Helmet</b><small>عدسة سليمة، فلتر أوتوماتيك، حزام رأس محكم</small></div><input type="checkbox" class="check" checked></div>
-<div class="item"><div><b>11- ركبة - Knee Pads</b><small>للعمل على الأرضيات - يمنع إصابة الركبة</small></div><input type="checkbox" class="check" checked></div>
-<div class="item"><div><b>12- أفرول - Coverall</b><small>قطن، مقاس مناسب، بدون أجزاء مفكوكة - يحمي الجسم</small></div><input type="checkbox" class="check" checked></div>
-<div class="item"><div><b>13- جاكيت عاكس - Reflective Jacket</b><small>للطقس البارد والليل - يزيد الرؤية</small></div><input type="checkbox" class="check" checked></div>
-<div class="item"><div><b>14- حزام عدة - Tool Belt</b><small>لا تحمل أدوات حادة في الجيب - يمنع سقوط العدد</small></div><input type="checkbox" class="check" checked></div>
-<div class="item"><div><b>15- إسعافات أولية - First Aid</b><small>تأكد من وجود شنطة إسعافات قريبة وعارف مكانها</small></div><input type="checkbox" class="check" checked></div>
-<div class="item"><div><b>16- إجراء طوارئ - Emergency</b><small>عارف رقم الطوارئ ومخرج الهروب ونقطة التجمع</small></div><input type="checkbox" class="check" checked></div>
-</div>
-</body>
-</html>
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ADEL V10 FINAL</title><style>body{background:#000;color:#fff;font-family:sans-serif;margin:0;padding:10px}.card{border:2px solid #00ff66;border-radius:20px;padding:15px;background:#111;margin-bottom:15px}h1{color:#00ff66;text-align:center;margin:5px;font-size:22px}.sub{color:#ffcc00;text-align:center;margin-bottom:15px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.inp{background:#000;border:1px solid #ffcc00;color:#fff;padding:10px;border-radius:10px;text-align:center}.btn{background:#ffcc00;color:#000;padding:12px;border-radius:12px;text-align:center;font-weight:bold;margin-top:10px}.tabs{border:1px solid #ffcc00;border-radius:15px;padding:8px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:15px 0}.tab{background:#000;border:1px solid #ffcc00;color:#ffcc00;padding:8px 14px;border-radius:10px;font-weight:bold}.tab.active{background:#ffcc00;color:#000}.item{background:#0a1a0a;border-right:4px solid #00ff66;border-left:4px solid #00ff66;border-radius:12px;padding:10px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}.item b{font-size:16px}.item small{display:block;color:#ccc;font-size:11px;margin-top:3px}.check{width:28px;height:28px}</style></head><body><div class="card"><h1>ADEL V10 - تعليمات السلامة</h1><div class="sub">PPE 16 بند كامل - الفرعون</div><div class="grid"><input class="inp" value="SBG Rakaez A-4"><input class="inp" value="PPE"><input class="inp" value="Zone 1"><input class="inp" value="100 m2"></div><div class="btn" onclick="window.print()">حفظ PDF / طباعة</div></div><div class="tabs"><div class="tab">Scaffold 30</div><div class="tab active">PPE 16</div><div class="tab">PTW 21</div></div>
+<div class="item"><div><b>1- خوذة - Helmet</b><small>صلاحية 3 سنين، افحص الشرخ، اربط الحزام - لا تستخدم مكسورة</small></div><input type="checkbox" class="check" checked></div>
+<div class="item"><div><b>2- نظارة - Glasses</b><small>نظيفة ضد الضباب - تحمي من الشرر والغبار</small></div><input type="checkbox" class="check" checked></div>
+<div class="item"><div><b>3- حزام أمان - Harness</b><small>صلاحية 5 سنين، افحص الخياطة والهوك - لا تستخدم ممزق</small></div><input type="checkbox" class="check" checked></div>
+<div class="item"><div><b>4- جوانتي - Gloves</b><small>مقاس مناسب وجاف - يحمي من الجروح والكيماويات</small></div><input type="checkbox" class="check" checked></div>
+<div class="item"><div><b>5- سيفتي - Shoes</b><small>مقدمة حديد، نعل ضد الانزلاق - يمنع إصابة القدم</small></div><input type="checkbox" class="check" checked></div>
+<div class="item"><div><b>6- سترة - Vest</b><small>عاكس سليم ونظيف - لازم تبان للمعدات ليلا</small></div><input type="checkbox" class="check" checked></div>
+<div class="item"><div><b>7- واقي وجه - Face Shield</b><small>للصاروخ والقطع - يحمي الوجه كامل</small></div><input type="checkbox" class="check" checked></div>
+<div class="item"><div><b>8- أذن - Ear Muff</b><small>أكثر من 85 ديسيبل - يمنع ضعف السمع</small></div><input type="checkbox" class="check" checked></div>
+<div class="item"><div><b>9- كمامة - Mask</b><small>محكمة على الوجه، فلتر نظيف - يمنع استنشاق الغبار</small></div><input type="checkbox" class="check" checked></div>
+<div class="item"><div><b>10- لحام - Welding</b><small>عدسة أوتوماتيك سليمة - تحمي العين من الأشعة</small></div><input type="checkbox" class="check" checked></div>
+<div class="item"><div><b>11- ركبة - Knee Pad</b><small>للعمل الأرضي - يمنع إصابة الركبة</small></div><input type="checkbox" class="check" checked></div>
+<div class="item"><div><b>12- أفرول - Coverall</b><small>قطن، بدون أجزاء مفكوكة - يحمي الجسم</small></div><input type="checkbox" class="check" checked></div>
+<div class="item"><div><b>13- جاكيت - Jacket</b><small>للبرد والليل - يزيد الرؤية</small></div><input type="checkbox" class="check" checked></div>
+<div class="item"><div><b>14- حزام عدة - Tool Belt</b><small>لا تضع أدوات حادة في الجيب - يمنع سقوط العدة</small></div><input type="checkbox" class="check" checked></div>
+<div class="item"><div><b>15- إسعافات - First Aid</b><small>اعرف مكان الشنطة ورقم الطوارئ</small></div><input type="checkbox" class="check" checked></div>
+<div class="item"><div><b>16- طوارئ - Emergency</b><small>اعرف مخرج الهروب ونقطة التجمع</small></div><input type="checkbox" class="check" checked></div>
+</body></html>
