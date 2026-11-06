@@ -3,42 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SBG-HSE V3.1 FIXED</title>
+<title>SBG-HSE V3.2 EN PDF</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
-body{background:#000;color:#fff;font-family:system-ui;padding:8px;margin:0}
+body{background:#000;color:#fff;font-family:system-ui;padding:8px}
 .card{border:2px solid #d4af37;border-radius:14px;padding:12px;margin:10px 0;background:#111}
 .tab{padding:10px 18px;margin:3px;border-radius:20px;border:1px solid #d4af37;cursor:pointer;display:inline-block}
 .tab.active{background:#d4af37;color:#000;font-weight:bold}
-.item{background:#1a1a1a;padding:10px;margin:6px 0;border-radius:10px;border-right:4px solid #d4af37;display:flex;justify-content:space-between;align-items:center}
-.item.ok{border-right-color:#00ff88} .gold{background:linear-gradient(#d4af37,#ffd700);color:#000;width:100%;padding:14px;border-radius:12px;margin:6px 0;font-weight:bold;border:none}
-.red{background:#d00000;color:#fff;width:100%;padding:14px;border-radius:12px;margin:6px 0;border:none}
+.item{background:#1a1a1a;padding:10px;margin:6px 0;border-radius:10px;border-right:4px solid #d4af37;display:flex;justify-content:space-between}
+.item.ok{border-right-color:#00ff88}
+.gold{background:linear-gradient(#d4af37,#ffd700);color:#000;width:100%;padding:14px;border-radius:12px;border:none;font-weight:bold;margin:6px 0}
+.red{background:#d00000;color:#fff;width:100%;padding:14px;border-radius:12px;border:none;margin:6px 0}
 .cam{background:#222;color:#ffd700;border:1px solid #ffd700;padding:6px 10px;border-radius:8px}
-.thumb{width:60px;height:60px;border-radius:6px;border:1px solid #ffd700}
+.thumb{width:50px;height:50px;border-radius:6px;border:1px solid #ffd700}
 </style>
 </head>
 <body>
 <div class="card" style="text-align:center">
-<h2 style="color:#ffd700">SBG-HSE-001 | عادل محمود V3.1 ©2026</h2>
-<p>Rakaez A-4 | 415.8m2 | عيون 44 عمود</p>
+<h2 style="color:#ffd700">SBG-HSE-001 | عادل محمود V3.2 ©2026</h2>
+<p>Rakaez A-4 | 415.8m2 | عيون 44</p>
 <span class="tab active" id="tD" onclick="show('daily')">يومي 29 بند</span>
-<span class="tab" id="tW" onclick="show('weekly')">أسبوعي 50 ساعة</span>
-<p id="prog" style="color:#ffd700;font-size:18px"></p>
+<span class="tab" id="tW" onclick="show('weekly')">أسبوعي 50H</span>
+<p id="prog" style="color:#ffd700"></p>
 </div>
 <div class="card"><div id="dailyList"></div><div id="weeklyList" style="display:none"></div>
-<button class="gold" onclick="exportPDF()">📄 تصدير PDF رسمي SBG - معتمد</button>
+<button class="gold" onclick="exportPDF()">📄 تصدير PDF رسمي EN - معتمد SBG</button>
 <button class="red" onclick="localStorage.clear();location.reload()">مسح</button>
 </div>
 <script>
-const daily=["زيت المحرك","مياه الرادياتير","زيت الهيدروليك","زيت الفرامل","حالة الإطارات","الشوكات والسلاسل","الفرامل","الكلاكس والإنارة","حزام الأمان","الزجاج والمرايات","تسريب زيوت","البطارية","طفاية الحريق","مثلث التحذير","لوحة التحكم","الدركسيون","السقف الواقي OHG","الشاسية","أزرار التحكم","الفرشة","بوق الرجوع","الإضاءة الدوارة","النظافة العامة","تصريح التشغيل","رخصة السائق","ممنوع التدخين","منطقة العمل","الحمولة","توقيع السلامة"];
-const weekly=["تغيير زيت المحرك","فلتر الزيت","فلتر الهواء","فلتر الهيدروليك","تشحيم عام 50 نقطة","شد السيور","فحص البطارية بالكامل","فحص كهرباء الفورك","فحص السلاسل","فحص خراطيم الهيدروليك","فحص أسطوانات الرفع","فحص الفرامل بالكامل"];
+const dailyAR=["زيت المحرك","مياه الرادياتير","زيت الهيدروليك","زيت الفرامل","حالة الإطارات","الشوكات والسلاسل","الفرامل","الكلاكس والإنارة","حزام الأمان","الزجاج والمرايات","تسريب زيوت","البطارية","طفاية الحريق","مثلث التحذير","لوحة التحكم","الدركسيون","السقف الواقي OHG","الشاسية","أزرار التحكم","الفرشة","بوق الرجوع","الإضاءة الدوارة","النظافة العامة","تصريح التشغيل","رخصة السائق","ممنوع التدخين","منطقة العمل","الحمولة","توقيع السلامة"];
+const dailyEN=["Engine Oil","Radiator Water","Hydraulic Oil","Brake Oil","Tires Condition","Forks & Chains","Brakes","Horn & Lights","Seat Belt","Glass & Mirrors","Oil Leaks","Battery","Fire Extinguisher","Warning Triangle","Control Panel","Steering","OHG Roof","Chassis","Control Buttons","Mattress","Reverse Buzzer","Rotating Light","General Cleanliness","Operation Permit","Driver License","No Smoking Zone","Work Area","Load","Safety Signature"];
+const weeklyAR=["تغيير زيت المحرك","فلتر الزيت","فلتر الهواء","فلتر الهيدروليك","تشحيم عام 50 نقطة","شد السيور","فحص البطارية","فحص كهرباء","فحص السلاسل","فحص خراطيم الهيدروليك","فحص أسطوانات الرفع","فحص الفرامل"];
+const weeklyEN=["Engine Oil Change","Oil Filter","Air Filter","Hydraulic Filter","General Greasing 50pts","Belts Tightening","Battery Check","Electric Check","Chains Check","Hydraulic Hoses","Lifting Cylinders","Brakes Full Check"];
 let cur='daily';
 function show(t){cur=t;document.getElementById('dailyList').style.display=t=='daily'?'block':'none';document.getElementById('weeklyList').style.display=t=='weekly'?'block':'none';document.getElementById('tD').className=t=='daily'?'tab active':'tab';document.getElementById('tW').className=t=='weekly'?'tab active':'tab';upd();}
-function render(list,prefix,divId){let d=document.getElementById(divId);d.innerHTML='';list.forEach((txt,i)=>{let k=prefix+i;let chk=localStorage.getItem(k)=='1';let img=localStorage.getItem(k+'_img');d.innerHTML+=`<div class="item ${chk?'ok':''}"><span>${i+1}- ${txt}</span><div><input type="checkbox" ${chk?'checked':''} onchange="localStorage.setItem('${k}',this.checked?1:0);upd();render(daily,'D','dailyList');render(weekly,'W','weeklyList')" style="width:22px;height:22px"><button class="cam" onclick="openCam('${k}')">📸</button></div>${img?`<br><img src="${img}" class="thumb">`:''}</div>`;});}
+function render(listAR,prefix,divId){let d=document.getElementById(divId);d.innerHTML='';listAR.forEach((txt,i)=>{let k=prefix+i;let chk=localStorage.getItem(k)=='1';let img=localStorage.getItem(k+'_img');d.innerHTML+=`<div class="item ${chk?'ok':''}"><span>${i+1}- ${txt}</span><div><input type="checkbox" ${chk?'checked':''} onchange="localStorage.setItem('${k}',this.checked?1:0);location.reload()" style="width:22px;height:22px"><button class="cam" onclick="openCam('${k}')">📸</button></div>${img?`<br><img src="${img}" class="thumb">`:''}</div>`;});}
 function openCam(k){let inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.capture='environment';inp.onchange=e=>{let r=new FileReader();r.onload=()=>{localStorage.setItem(k+'_img',r.result);location.reload();};r.readAsDataURL(e.target.files[0]);};inp.click();}
-function upd(){let total=cur=='daily'?29:weekly.length;let pre=cur=='daily'?'D':'W';let c=0;for(let i=0;i<total;i++)if(localStorage.getItem(pre+i)=='1')c++;document.getElementById('prog').innerText=`${cur=='daily'?'يومي':'أسبوعي'}: تم ${c}/${total} - ${Math.round(c/total*100)}% - ${c==total?'✅ جاهز للتصدير':'⚠️ كمل الفحص'}`;}
-render(daily,'D','dailyList');render(weekly,'W','weeklyList');upd();
-async function exportPDF(){const {jsPDF}=window.jspdf;const doc=new jsPDF();let now=new Date();let dateStr=now.toLocaleDateString('ar-EG')+' '+now.toLocaleTimeString('ar-EG');doc.setFontSize(16);doc.text('SBG - Rakaez A-4 - HSE Official Report',10,15);doc.setFontSize(11);doc.text(`Date: ${dateStr}`,10,23);doc.text(`Project: Rakaez A-4 | 415.8m2 | Owner: Adel Mahmoud | ID: SBG2026adel89`,10,30);let y=40;doc.setFontSize(12);doc.text('Daily Inspection - 29 Points:',10,y);y+=8;doc.setFontSize(9);for(let i=0;i<29;i++){let ok=localStorage.getItem('D'+i)=='1';let s=ok?'PASS ✅':'FAIL ❌';let photo=localStorage.getItem('D'+i+'_img')?' + PHOTO 📸':'';doc.text(`${i+1}. ${daily[i]} : ${s}${photo}`,10,y);y+=6;if(y>280){doc.addPage();y=10;}}y+=5;doc.text('Weekly 50H Inspection:',10,y);y+=7;for(let i=0;i<weekly.length;i++){let s=localStorage.getItem('W'+i)=='1'?'PASS ✅':'FAIL ❌';doc.text(`${i+1}. ${weekly[i]} : ${s}`,10,y);y+=6;if(y>280){doc.addPage();y=10;}}y+=10;doc.setFontSize(10);doc.text('Digital Signature: SBG2026adel89 - Adel Mahmoud - First HSE Mobile System in Egypt - 2026',10,y);doc.save(`SBG-HSE-${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}.pdf`);}
+function upd(){let total=cur=='daily'?29:weeklyAR.length;let pre=cur=='daily'?'D':'W';let c=0;for(let i=0;i<total;i++)if(localStorage.getItem(pre+i)=='1')c++;document.getElementById('prog').innerText=`${cur=='daily'?'يومي':'أسبوعي'}: ${c}/${total} - ${Math.round(c/total*100)}%`;}
+render(dailyAR,'D','dailyList');render(weeklyAR,'W','weeklyList');upd();
+async function exportPDF(){const {jsPDF}=window.jspdf;const doc=new jsPDF();let now=new Date();let dateStr=now.toISOString().split('T')[0]+' '+now.toLocaleTimeString();doc.setFontSize(16);doc.text('SBG - Rakaez A-4 - HSE OFFICIAL REPORT',10,15);doc.setFontSize(10);doc.text(`Date: ${dateStr}`,10,22);doc.text(`Project: Rakaez A-4 (415.8m2) | Location: Oyoun 44 | Owner: Adel Mahmoud`,10,28);doc.text(`ID: SBG2026adel89 | Forklift Checklist | V3.2 EN`,10,34);let y=42;doc.setFontSize(11);doc.text('DAILY INSPECTION - 29 Points:',10,y);y+=7;doc.setFontSize(8);for(let i=0;i<29;i++){let ok=localStorage.getItem('D'+i)=='1';let s=ok?'PASS':'FAIL';let photo=localStorage.getItem('D'+i+'_img')?' + PHOTO':'';doc.text(`${i+1}. ${dailyEN[i]} [${dailyAR[i]}] : ${s}${photo}`,10,y);y+=5;if(y>285){doc.addPage();y=10;}}y+=5;doc.setFontSize(11);doc.text('WEEKLY 50H INSPECTION:',10,y);y+=7;doc.setFontSize(8);for(let i=0;i<weeklyEN.length;i++){let s=localStorage.getItem('W'+i)=='1'?'PASS':'FAIL';doc.text(`${i+1}. ${weeklyEN[i]} : ${s}`,10,y);y+=5;if(y>285){doc.addPage();y=10;}}y+=10;doc.setFontSize(8);doc.text('Digital Signature: SBG2026adel89 - Adel Mahmoud - First HSE Mobile System in Egypt',10,y);y+=4;doc.text('Rakaez A-4 | 22 Floors | 415.8m2 | Safety First | No Smoking Except Designated Areas',10,y);doc.save(`SBG-HSE-EN-${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}.pdf`);}
 </script>
 </body>
 </html>
