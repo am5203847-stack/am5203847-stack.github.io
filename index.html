@@ -1,1 +1,42 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><title>PHARAOH V70 GOD EMPIRE</title><style>body{background:#000;color:gold;text-align:center;padding:20px;font-family:monospace}h1{font-size:30px}</style></head><body><h1>👁️ PHARAOH V70 GOD EMPIRE 👁️</h1><h2>FROM CAIRO WITH TERMUX 🇪🇬</h2><h3>ANKH UDJA SENEB</h3><p>THE 10 REPOS EMPIRE IS LIVE - AM STORE IS DEAD</p><p>- Adel 89</p></body></html>
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SBG-HSE-001 | عادل محمود</title>
+<style>
+body{background:#000;color:#fff;font-family:monospace;margin:0;padding:10px}
+.card{border:2px solid #d4af37;border-radius:15px;padding:12px;margin:10px 0;background:#111;text-align:center}
+.red{background:#d00000;color:#fff;border:none;width:100%;padding:14px;border-radius:12px;font-weight:bold;margin:6px 0}
+.gold{background:linear-gradient(#d4af37,#ffd700);color:#000;border:none;width:100%;padding:14px;border-radius:12px;font-weight:bold;margin:6px 0}
+.item{display:flex;justify-content:space-between;background:#1a1a1a;padding:10px;margin:5px 0;border-radius:8px;border-right:4px solid #d4af37;text-align:right}
+</style>
+</head>
+<body>
+<div class="card">
+<h2 style="color:#ffd700">SBG-HSE-001 | عادل محمود 2026©</h2>
+<p>Rakaez A-4 | 415.8m2 | 22 | عيون 44 عمود</p>
+<p style="color:#00ff88">✅ 1. ممنوع التدخين الا في الأماكن المخصصة</p>
+<p style="font-size:10px;opacity:.5">SBG2026adel89 | محمي بكلمة سر</p>
+</div>
+<div class="card">
+<h3 style="color:#ffd700">🚜 فحص فوركليفت عيون 44 - 69 بند</h3>
+<p id="prog" style="color:#ffd700"></p>
+<div id="list"></div>
+<button class="red" onclick="exportPDF()">📄 تصدير تقرير يومي 29 بند</button>
+<button class="gold" onclick="localStorage.clear();location.reload()">🔄 اعادة تعيين</button>
+</div>
+<div class="card">
+<h3 style="color:#ffd700">Adel Mahmoud 2026 ©</h3>
+<p>FIRST HSE MOBILE SYSTEM IN EGYPT</p>
+<p style="font-size:9px;opacity:.4">Digital Signature: SBG2026adel89 | Rakaez A-4</p>
+</div>
+<script>
+const a=["زيت المحرك","مياه الرادياتير","زيت الهيدروليك","زيت الفرامل","حالة الإطارات","الشوكات والسلاسل","الفرامل","الكلاكس والإنارة","حزام الأمان","الزجاج والمرايات","تسريب زيوت","البطارية","طفاية الحريق","مثلث التحذير","لوحة التحكم","الدركسيون","السقف الواقي OHG","الشاسية","أزرار التحكم","الفرشة","بوق الرجوع","الإضاءة الدوارة","النظافة العامة","تصريح التشغيل","رخصة السائق","ممنوع التدخين","منطقة العمل","الحمولة","توقيع السلامة"];
+const d=document.getElementById('list');
+a.forEach((t,i)=>{let s=localStorage.getItem('f'+i)=='1'; d.innerHTML+=`<div class=item><span>${i+1}- ${t}</span><input type=checkbox ${s?'checked':''} onchange="localStorage.setItem('f'+i,this.checked?1:0);upd()"></div>`});
+function upd(){let c=0;for(let i=0;i<29;i++)if(localStorage.getItem('f'+i)=='1')c++; document.getElementById('prog').innerText=`تم ${c}/29 - ${Math.round(c/29*100)}%`;} 
+function exportPDF(){let txt=`تقرير يومي Rakaez A-4 ${new Date().toLocaleDateString()}\n`;for(let i=0;i<29;i++)txt+=`${a[i]}: ${localStorage.getItem('f'+i)=='1'?'سليم':'غير سليم'}\n`;let b=new Blob([txt],{type:'text/plain'});let u=document.createElement('a');u.href=URL.createObjectURL(b);u.download=`HSE-${Date.now()}.txt`;u.click();} upd();
+</script>
+</body>
+</html>
