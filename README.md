@@ -5,8 +5,8 @@
 
 [![Typing](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=900&size=28&pause=800&color=FFD700&center=true&vCenter=true&width=800&lines=EMPIRE+OF+10+REPOS+UNLEASHED;PHARAOH+V70+GOD+LEVEL;BUILT+IN+CAIRO+ON+TERMUX;ANDROID+%7C+NO+PC+%7C+PURE+POWER)](https://git.io/typing-svg)
 
-![Views](https://komarev.com/ghpvc/?username=am5203847-stack&label=PHARAOH+VIEWS&color=gold&style=for-the-badge)
-![Followers](https://img.shields.io/github/followers/am5203847-stack?label=FOLLOW+PHARAOH&style=for-the-badge&color=gold)
+![Views](https://komarev.com/ghpvc/?username=am5203847-stack&label=PHARAOH+VIEWS&color=FFD700&style=for-the-badge)
+![Followers](https://img.shields.io/github/followers/am5203847-stack?label=FOLLOW+PHARAOH&style=for-the-badge&color=FFD700)
 
 ---
 
@@ -36,8 +36,6 @@
 - Location: Cairo, Egypt 🇪🇬
 - Built: Entirely on Android
 
-<div align="center">
-<h1>𓂀 ANKH UDJA SENEB 𓂀</h1>
-</div>
+# 𓂀 ANKH UDJA SENEB 𓂀
 
 </div>
