@@ -1,9 +1,78 @@
+
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ADEL V9.2</title></head><body style="background:#000;color:#fff;text-align:center;padding:20px;font-family:sans-serif">
-<h1 style="color:#00ff88">ADEL V9.2 PDF FIXED</h1>
-<h2 style="color:#ffcc00">SBG | Rakaez A-4</h2>
-<p>ELEC: 20/20 - 100%</p>
-<p style="border:2px solid #ffcc00;padding:15px;border-radius:15px">الموقع رجع ✅ Online<br>Electrical Inspection 20 Items جاهز</p>
-<a href="#" style="background:#00ff88;color:#000;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:bold">Generate PDF Report</a>
-</body></html>
-ok
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADEL V9.2 PDF FIXED - SBG Rakaez</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+body{background:#000;color:#fff;font-family:Arial;text-align:center;padding:15px}
+h1{color:#00ff88;font-size:28px}
+h2{color:#ffcc00}
+.box{border:2px solid #ffcc00;padding:15px;border-radius:15px;margin:15px 0;background:#111}
+.item{background:#222;margin:8px 0;padding:12px;border-radius:10px;text-align:left;display:flex;justify-content:space-between;align-items:center}
+.item.done{background:#003300;border:1px solid #00ff88}
+button{padding:12px 25px;border-radius:10px;border:none;font-weight:bold;cursor:pointer;margin:5px}
+.btn-green{background:#00ff88;color:#000;font-size:18px;width:90%}
+.btn-check{background:#ffcc00;color:#000}
+</style>
+</head>
+<body>
+<h1>ADEL V9.2 PDF FIXED</h1>
+<h2>SBG | Rakaez A-4/h</h2>
+<p id="progress">ELEC: 0/20 - 0%</p>
+
+<div class="box">
+✅ الموقع رجع Online<br>
+Electrical Inspection 20 Items جاهز
+</div>
+
+<div id="list"></div>
+
+<button class="btn-green" onclick="generatePDF()">Generate PDF Report</button>
+<p id="status"></p>
+
+<script>
+const items = [
+"1. Main Panel Inspection","2. Circuit Breakers","3. Wiring Condition","4. Socket Outlets","5. Lighting Points",
+"6. Earth Grounding","7. Cable Tray","8. Distribution Board","9. Emergency Lighting","10. Fire Alarm Wiring",
+"11. Cable Insulation","12. Load Balance","13. Voltage Test","14. Continuity Test","15. Insulation Resistance",
+"16. Safety Labels","17. Panel Cleaning","18. Tightness Check","19. Final Testing","20. Site Handover"
+];
+let checked = new Array(20).fill(false);
+const listDiv = document.getElementById('list');
+const progress = document.getElementById('progress');
+
+function render(){
+ listDiv.innerHTML="";
+ let c=0;
+ items.forEach((t,i)=>{
+  if(checked[i]) c++;
+  listDiv.innerHTML+=`<div class="item ${checked[i]?'done':''}"><span>${t}</span><button class="btn-check" onclick="toggle(${i})">${checked[i]?'✅':'Check'}</button></div>`;
+ });
+ progress.textContent=`ELEC: ${c}/20 - ${Math.round(c/20*100)}%`;
+}
+function toggle(i){ checked[i]=!checked[i]; render(); }
+
+function generatePDF(){
+ const { jsPDF } = window.jspdf;
+ const doc = new jsPDF();
+ doc.setFontSize(16);
+ doc.text("ADEL V9.2 - SBG Rakaez A-4/h", 10, 15);
+ doc.setFontSize(12);
+ doc.text(`ELEC Inspection: ${checked.filter(x=>x).length}/20`, 10, 25);
+ doc.text(`Date: ${new Date().toLocaleString()}`, 10, 32);
+ let y=45;
+ items.forEach((t,i)=>{
+  doc.text(`${checked[i]?'[X]':'[ ]'} ${t}`, 10, y);
+  y+=8;
+  if(y>280){doc.addPage(); y=15;}
+ });
+ doc.save(`ADEL_SBG_${Date.now()}.pdf`);
+ document.getElementById('status').textContent="PDF Generated ✅";
+}
+render();
+</script>
+</body>
+</html>
